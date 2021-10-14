@@ -1,1 +1,2 @@
-Redgy, Reginald, 1
+Redgy, Reginald, 0
+Ben, Benredgy, 0
