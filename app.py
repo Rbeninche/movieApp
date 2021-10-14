@@ -1,4 +1,6 @@
 from utils import database
+from utils import database_csv
+
 
 USER_CHOICE = """
 Enter:
@@ -12,6 +14,7 @@ Your choice: """
 
 
 def menu():
+    database_csv.create_book_table()
     user_input = input(USER_CHOICE)
     while user_input != 'q':
         # if user_input == 'a':
@@ -32,24 +35,24 @@ def menu():
 def promp_add_book():
     name = input('Enter the new book name: ')
     author = input('Enter the new book author: ')
-    database.add_book(name, author)
+    database_csv.add_book(name, author)
 
 
 def list_books():
-    books = database.get_all_books()
+    books = database_csv.get_all_books()
     for book in books:
-        read = 'YES' if book['read'] else 'NO'
+        read = 'YES' if book['read'] == "1" else 'NO'
         print(f"{book['name']} by {book['author']}, read: {read}")
 
 
 def promp_read_book():
     name = input("Enter the name of the book you just finished reading: ")
-    database.mark_book_as_read(name)
+    database_csv.mark_book_as_read(name)
 
 
 def promp_delete_book():
     name = input('Enter the name of the book you wish to delete: ')
-    database.delete_book(name)
+    database_csv.delete_book(name)
 
 
 selection = {
